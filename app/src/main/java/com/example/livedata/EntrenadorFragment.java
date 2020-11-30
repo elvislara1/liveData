@@ -30,22 +30,10 @@ public class EntrenadorFragment extends Fragment {
 
         EntrenadorViewModel entrenadorViewModel = new ViewModelProvider(this).get(EntrenadorViewModel.class);
 
-        entrenadorViewModel.obtenerEjercicio().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+        entrenadorViewModel.obtenerImagen().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer ejercicio) {
                 Glide.with(EntrenadorFragment.this).load(ejercicio).into(binding.ejercicio);
-            }
-        });
-
-        entrenadorViewModel.obtenerRepeticion().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String repeticion) {
-                if(repeticion.equals("CAMBIO")){
-                    binding.cambio.setVisibility(View.VISIBLE);
-                } else {
-                    binding.cambio.setVisibility(View.GONE);
-                }
-                binding.repeticion.setText(repeticion);
             }
         });
     }
